@@ -24,7 +24,7 @@ const SideBar = () => {
         {events.length > 0
           ? events.map((event) => (
               <div
-                className={`external-event bg-${event.bgColor}`}
+                className={`external-event bg-${event.color}`}
                 key={event.id}
                 onClick={() => selected(event)}
                 data-toggle="modal"

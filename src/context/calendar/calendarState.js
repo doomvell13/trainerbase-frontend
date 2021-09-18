@@ -18,15 +18,15 @@ import {
 const CalendarState = (props) => {
   const initialState = {
     events: [],
-    colors: ['Primary', 'Success', 'Info', 'Warning', 'Danger'],
+    colors: ['Blue', 'Green', 'Cyan', 'Yellow', 'Red'],
     selectedEvent: {},
     activeCalendarEvents: [],
     colorObj: {
-      primary: '#0275d8',
-      success: '#5cb85c',
-      info: '#5bc0de',
-      warning: '#f0ad4e',
-      danger: '#d9534f',
+      blue: '#0275d8',
+      green: '#5cb85c',
+      cyan: '#5bc0de',
+      yellow: '#f0ad4e',
+      red: '#d9534f',
     },
   }
 

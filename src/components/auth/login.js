@@ -34,6 +34,7 @@ const Login = () => {
       })
       console.log(data)
       window.localStorage.setItem('user', JSON.stringify(data))
+      toast.success('Login Success!')
       history.replace('/')
     } catch (err) {
       toast(err.response.data)
@@ -75,7 +76,7 @@ const Login = () => {
         </form>
 
         <p className="text-center p-3">
-          Not yet registered? <Link href="/register">Register</Link>
+          Not yet registered? <Link to="/register">Register</Link>
         </p>
       </div>
     </>

@@ -2,8 +2,10 @@ import { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { SyncOutlined } from '@ant-design/icons'
+import { useHistory } from 'react-router-dom'
 
 const Register = () => {
+  const history = useHistory()
   const [firstName, setFirstName] = useState('Anthony')
   const [lastName, setLastName] = useState('Trainer3')
   const [email, setEmail] = useState('trainer@gmail.com')
@@ -27,11 +29,14 @@ const Register = () => {
         }
       )
 
-      toast('Registration successful. Please login.')
+      toast.success('Registration successful. Please login.')
       setLoading(false)
+      history.replace('/login')
     } catch (err) {
       console.log(err.message)
-      toast(err.response.data)
+      toast.error(
+        'Something went wrong with the registration. Please use another email to try again.'
+      )
       setLoading(false)
     }
   }
