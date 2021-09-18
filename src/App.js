@@ -5,6 +5,7 @@ import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import CalendarPage from './pages/CalendarPage'
+import Calendar2Page from './pages/CalendarPage2'
 import { useContext } from 'react'
 import { Context } from './context/auth'
 
@@ -30,6 +31,9 @@ function App() {
         </Route>
         <Route path="/register">
           <RegisterPage />
+        </Route>
+        <Route path="/calendar2">
+          <Calendar2Page />
         </Route>
         <Route path="*">
           <Redirect to="/" />
