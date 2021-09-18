@@ -34,6 +34,7 @@ const Login = () => {
       })
       console.log(data)
       window.localStorage.setItem('user', JSON.stringify(data))
+
       history.replace('/')
     } catch (err) {
       toast(err.response.data)

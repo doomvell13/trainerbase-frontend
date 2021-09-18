@@ -1,8 +1,9 @@
 import React, { useState, useContext } from 'react'
 import moment from 'moment'
-
+import { Context } from '../../context/auth'
 import EventForm from './EventForm'
 import CalendarContext from '../../context/calendar/calendarContext'
+import axios from 'axios'
 
 const AddEvent = () => {
   const [color, setColor] = useState('')
@@ -12,7 +13,9 @@ const AddEvent = () => {
   const [showtime, setShowTime] = useState(false)
   const [startDate, setStartDate] = useState(new Date())
   const [endDate, setEndDate] = useState(new Date())
-
+  const { state, dispatch } = useContext(Context)
+  const { user } = state
+  console.log(user)
   const calendarContext = useContext(CalendarContext)
   const { addEvent, events, colors, colorObj } = calendarContext
 
@@ -54,10 +57,23 @@ const AddEvent = () => {
     }
   }
 
-  const createEvent = () => {
+  // const { data } = await axios.post(
+  //   `${process.env.REACT_APP_PUBLIC_API}/authentication/login`,
+  //   {
+  //     email,
+  //     password,
+  //   }
+
+  const createEvent = async () => {
     const event = setEvent(events.length + 1)
-    // add event to events array using context
-    addEvent(event)
+    console.log(user.token)
+
+    await axios.post(`${process.env.REACT_APP_PUBLIC_API}/sessions`, event, {
+      headers: {
+        Authorization: `Bearer ${user.token}`,
+      },
+    })
+    // addEvent(event)
     reset()
   }
 
@@ -71,7 +87,6 @@ const AddEvent = () => {
     }
 
     const event = {
-      id,
       title: eventname,
       description,
       start,
