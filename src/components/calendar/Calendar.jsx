@@ -6,8 +6,11 @@ import interactionPlugin from '@fullcalendar/interaction'
 import api from '../api/api'
 import moment from 'moment'
 import { Context } from '../../context/auth'
+import { Link, useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function Calendar() {
+  const history = useHistory()
   const [modalOpen, setModalOpen] = useState(false)
   const [events, setEvents] = useState([])
   const calendarRef = useRef(null)
@@ -46,46 +49,61 @@ export default function Calendar() {
     )
   }
 
-  async function handleDatesSet() {
+  async function handleDatesSet(selectInfo) {
+    // console.log(selectInfo)
     const response = await api.get('/sessions')
-    setEvents(response.data.data)
-    // console.log(response.data.data)
+    // console.log(response.data)
+    // console.log(response.data)
+    setEvents(response.data)
+    // console.log(selectInfo)
   }
 
   function renderEventContent(event) {
     return (
       <>
         <b>{event.timeText}</b>
-        <i>{event.event.extendedProps.title}</i>
+        <i>{event.event.title}</i>
       </>
     )
   }
   async function updateEvent(event) {
-    const id = event.event._def.extendedProps._id
-    const title = event._def.extendedProps.title
-    const description = event._def.extendedProps.description
+    const id = event.event._def.publicId
+    const title = event.event.title
+    const description = event.event.extendedProps.description
     const start = event.event._instance.range.start
     const end = event.event._instance.range.end
-
-    await api.put(`/sessions/${id}`, {
-      title: title,
-      description: description,
-      start: start,
-      end: end,
-    })
+    await api.put(
+      `/sessions/${id}`,
+      {
+        id: id,
+        title: title,
+        description: description,
+        start: start,
+        end: end,
+      },
+      {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      }
+    )
   }
 
   async function deleteEvent(event) {
-    const id = event.event._def.extendedProps._id
+    const id = event.event._def.publicId
 
     if (
       // eslint-disable-next-line no-restricted-globals
-      confirm(
-        `Do you really want to delete: ${event.event.extendedProps.title}?`
-      )
+      confirm(`Do you really want to delete: ${event.event.title}?`)
     ) {
-      api.delete(`/sessions/${id}`, event.event)
+      api.delete(`/sessions/${id}`, event.event, {
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
     }
+    toast.success('Delete successful')
+    history.replace('/calendar')
   }
 
   return (
