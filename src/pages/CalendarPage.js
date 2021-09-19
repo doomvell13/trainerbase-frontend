@@ -1,5 +1,5 @@
 import React from 'react'
-import SideBar from '../components/sidebar/SideBar'
+
 import Calendar from '../components/calendar/Calendar'
 
 const CalendarPage = () => {
@@ -11,7 +11,6 @@ const CalendarPage = () => {
             <div className="card">
               <div className="card-body">
                 <div className="row">
-                  <SideBar />
                   <Calendar />
                 </div>
               </div>
