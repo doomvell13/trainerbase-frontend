@@ -21,7 +21,7 @@ export default function AddEventModal({ isOpen, onClose, onEventAdded }) {
   }
 
   return (
-    <Modal isOpen={isOpen} onRequestClose={onClose}>
+    <Modal isOpen={isOpen} onRequestClose={onClose} ariaHideApp={false}>
       <form className="form" onSubmit={onSubmit}>
         <label className="label">Title</label>
         <input
