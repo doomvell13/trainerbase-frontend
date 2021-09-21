@@ -1,6 +1,8 @@
 import React, { useState, useRef, useContext } from 'react'
 import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
+import momentPlugin from '@fullcalendar/moment'
+
 import AddEventModal from './AddEventModal'
 import interactionPlugin from '@fullcalendar/interaction'
 import api from '../api/api'
@@ -19,11 +21,13 @@ export default function Calendar() {
 
   const onEventAdded = (event) => {
     let calendarApi = calendarRef.current.getApi()
+    // console.log(event)
     calendarApi.addEvent({
       title: event.title,
       description: event.description,
-      start: moment(event.start).toDate(),
-      end: moment(event.end).toDate(),
+      start: new Date(event.start),
+      //use timestamp send with timestamp
+      end: new Date(event.end),
     })
   }
 
@@ -32,8 +36,7 @@ export default function Calendar() {
     const description = data.event.extendedProps.description
     const start = data.event._instance.range.start
     const end = data.event._instance.range.end
-
-    await api.post(
+    const session = await api.post(
       '/sessions',
       {
         title,
@@ -47,6 +50,9 @@ export default function Calendar() {
         },
       }
     )
+    console.log(session)
+    data.event.setExtendedProp('id', session.data.id)
+    console.log(data.event)
   }
 
   async function handleDatesSet(selectInfo) {
@@ -67,7 +73,8 @@ export default function Calendar() {
     )
   }
   async function updateEvent(event) {
-    const id = event.event._def.publicId
+    console.log(event)
+    const id = event.event.extendedProps.id
     const title = event.event.title
     const description = event.event.extendedProps.description
     const start = event.event._instance.range.start
@@ -116,9 +123,10 @@ export default function Calendar() {
       <div style={{ position: 'relative', zIndex: 0 }}>
         <FullCalendar
           events={events}
+          timeZone="Asia/Singapore"
           ref={calendarRef}
           selectMirror={true}
-          plugins={[dayGridPlugin, interactionPlugin]}
+          plugins={[dayGridPlugin, interactionPlugin, momentPlugin]}
           initialView="dayGridMonth"
           eventContent={renderEventContent}
           eventAdd={handleEventAdd}

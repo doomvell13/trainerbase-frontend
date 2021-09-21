@@ -1446,6 +1446,14 @@
     "@fullcalendar/common" "~5.9.0"
     tslib "^2.1.0"
 
+"@fullcalendar/moment@^5.9.0":
+  version "5.9.0"
+  resolved "https://registry.yarnpkg.com/@fullcalendar/moment/-/moment-5.9.0.tgz#c5a92dfec5034b8ce129aa20e274d91ded9f5043"
+  integrity sha512-kfB5X5NTrWL0cDeFH8NWiLHDahnz4528mbaoxHw+UZGDYE6YDVtp6v0IO69RfJG6W2oNLCwX8cWV5Wkq7i9Aig==
+  dependencies:
+    "@fullcalendar/common" "~5.9.0"
+    tslib "^2.1.0"
+
 "@fullcalendar/react@^5.9.0":
   version "5.9.0"
   resolved "https://registry.yarnpkg.com/@fullcalendar/react/-/react-5.9.0.tgz#2948d28185517ddab65ad4c06dbab56e11f24ea7"
