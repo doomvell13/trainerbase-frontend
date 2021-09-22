@@ -17,7 +17,15 @@ export default function AddEventModal({ isOpen, onClose, onEventAdded }) {
       start,
       end,
     })
+    reset()
     onClose()
+  }
+
+  const reset = () => {
+    setTitle('')
+    setDescription('')
+    setStart(new Date())
+    setEnd(new Date())
   }
 
   return (

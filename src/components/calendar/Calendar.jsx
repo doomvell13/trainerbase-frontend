@@ -8,11 +8,10 @@ import interactionPlugin from '@fullcalendar/interaction'
 import api from '../api/api'
 import moment from 'moment'
 import { Context } from '../../context/auth'
-import { Link, useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { computeSmallestCellWidth } from '@fullcalendar/common'
 
 export default function Calendar() {
-  const history = useHistory()
   const [modalOpen, setModalOpen] = useState(false)
   const [events, setEvents] = useState([])
   const calendarRef = useRef(null)
@@ -20,9 +19,11 @@ export default function Calendar() {
   const { user } = state
 
   const onEventAdded = (event) => {
+    // console.log(event)
     let calendarApi = calendarRef.current.getApi()
     // console.log(event)
     calendarApi.addEvent({
+      id: event._id,
       title: event.title,
       description: event.description,
       start: `${moment(event.start).format()}`,
@@ -32,6 +33,7 @@ export default function Calendar() {
   }
 
   async function handleEventAdd(data) {
+    // console.log(data.event)
     const title = data.event.title
     const description = data.event.extendedProps.description
     const start = data.event._instance.range.start
@@ -50,18 +52,12 @@ export default function Calendar() {
         },
       }
     )
-    console.log(session)
-    data.event.setExtendedProp('id', session.data.id)
-    console.log(data.event)
+    data.event.setProp('id', session.data.id)
   }
 
   async function handleDatesSet(selectInfo) {
-    // console.log(selectInfo)
     const response = await api.get('/sessions')
-    // console.log(response.data)
-    // console.log(response.data)
     setEvents(response.data)
-    // console.log(selectInfo)
   }
 
   function renderEventContent(event) {
@@ -73,7 +69,6 @@ export default function Calendar() {
     )
   }
   async function updateEvent(event) {
-    console.log(event)
     const id = event.event.id
     const title = event.event.title
     const description = event.event.extendedProps.description
@@ -82,7 +77,7 @@ export default function Calendar() {
     await api.put(
       `/sessions/${id}`,
       {
-        id: id,
+        _id: id,
         title: title,
         description: description,
         start: start,
@@ -97,7 +92,7 @@ export default function Calendar() {
   }
 
   async function deleteEvent(event) {
-    const id = event.event._def.publicId
+    const id = event.event.id
 
     if (
       // eslint-disable-next-line no-restricted-globals
@@ -109,8 +104,9 @@ export default function Calendar() {
         },
       })
     }
+    event.event.remove()
+
     toast.success('Delete successful')
-    history.replace('/calendar')
   }
 
   return (
