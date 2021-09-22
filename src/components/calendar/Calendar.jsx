@@ -25,9 +25,9 @@ export default function Calendar() {
     calendarApi.addEvent({
       title: event.title,
       description: event.description,
-      start: new Date(event.start),
+      start: `${moment(event.start).format()}`,
       //use timestamp send with timestamp
-      end: new Date(event.end),
+      end: `${moment(event.end).format()}`,
     })
   }
 
