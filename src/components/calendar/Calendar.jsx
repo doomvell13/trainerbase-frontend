@@ -74,7 +74,7 @@ export default function Calendar() {
   }
   async function updateEvent(event) {
     console.log(event)
-    const id = event.event.extendedProps.id
+    const id = event.event.id
     const title = event.event.title
     const description = event.event.extendedProps.description
     const start = event.event._instance.range.start
