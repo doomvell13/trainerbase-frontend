@@ -2,13 +2,15 @@ import { useState } from 'react'
 import axios from 'axios'
 import { toast } from 'react-toastify'
 import { SyncOutlined } from '@ant-design/icons'
+import { useHistory } from 'react-router-dom'
 
 const Register = () => {
+  const history = useHistory()
   const [firstName, setFirstName] = useState('Anthony')
   const [lastName, setLastName] = useState('Trainer3')
-  const [email, setEmail] = useState('trainer@gmail.com')
+  const [email, setEmail] = useState('anthonytrain@gmail.com')
   const [password, setPassword] = useState('abcd1234')
-  const [role, setRole] = useState('TRAINER')
+  const [role] = useState('TRAINER')
   const [loading, setLoading] = useState(false)
 
   const handleSubmit = async (e) => {
@@ -29,6 +31,7 @@ const Register = () => {
 
       toast('Registration successful. Please login.')
       setLoading(false)
+      history.replace('/login')
     } catch (err) {
       console.log(err.message)
       toast(err.response.data)
@@ -58,14 +61,14 @@ const Register = () => {
             placeholder="Enter Last Name"
             required
           />
-          <input
+          {/* <input
             type="text"
             className="form-control mb-4 p-4"
             value={role}
             onChange={(e) => setRole(e.target.value)}
             placeholder="TRAINER"
             required
-          />
+          /> */}
 
           <input
             type="email"
