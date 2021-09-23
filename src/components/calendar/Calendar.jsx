@@ -9,7 +9,6 @@ import api from '../api/api'
 import moment from 'moment'
 import { Context } from '../../context/auth'
 import { toast } from 'react-toastify'
-import { computeSmallestCellWidth } from '@fullcalendar/common'
 
 export default function Calendar() {
   const [modalOpen, setModalOpen] = useState(false)
@@ -27,13 +26,11 @@ export default function Calendar() {
       title: event.title,
       description: event.description,
       start: `${moment(event.start).format()}`,
-      //use timestamp send with timestamp
       end: `${moment(event.end).format()}`,
     })
   }
 
   async function handleEventAdd(data) {
-    // console.log(data.event)
     const title = data.event.title
     const description = data.event.extendedProps.description
     const start = data.event._instance.range.start
@@ -53,6 +50,7 @@ export default function Calendar() {
       }
     )
     data.event.setProp('id', session.data.id)
+    toast('Event successfully added')
   }
 
   async function handleDatesSet(selectInfo) {
@@ -68,6 +66,7 @@ export default function Calendar() {
       </>
     )
   }
+
   async function updateEvent(event) {
     const id = event.event.id
     const title = event.event.title
@@ -89,6 +88,7 @@ export default function Calendar() {
         },
       }
     )
+    toast('Event successfully changed')
   }
 
   async function deleteEvent(event) {
@@ -106,7 +106,7 @@ export default function Calendar() {
     }
     event.event.remove()
 
-    toast.success('Delete successful')
+    toast('Event successfully deleted')
   }
 
   return (

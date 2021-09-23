@@ -37,7 +37,7 @@ const Login = () => {
 
       history.replace('/')
     } catch (err) {
-      toast(err.response.data)
+      toast('something went wrong, please try again!')
       setLoading(false)
     }
   }
