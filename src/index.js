@@ -3,17 +3,18 @@ import { BrowserRouter } from 'react-router-dom'
 import React from 'react'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { Provider } from './context/auth'
-import CalendarState from './context/calendar/calendarState'
+import 'react-datetime/css/react-datetime.css'
+
 import './index.css'
 import App from './App'
 
 ReactDOM.render(
-  <Provider>
-    <BrowserRouter>
-      <CalendarState>
+  <React.StrictMode>
+    <Provider>
+      <BrowserRouter>
         <App />
-      </CalendarState>
-    </BrowserRouter>
-  </Provider>,
+      </BrowserRouter>
+    </Provider>
+  </React.StrictMode>,
   document.getElementById('root')
 )
