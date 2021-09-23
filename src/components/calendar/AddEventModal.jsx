@@ -31,27 +31,31 @@ export default function AddEventModal({ isOpen, onClose, onEventAdded }) {
   return (
     <Modal isOpen={isOpen} onRequestClose={onClose} ariaHideApp={false}>
       <form className="form" onSubmit={onSubmit}>
-        <label className="label">Title</label>
-        <input
-          placeholder="Title"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-        />
-        <div>
-          <label className="label">Description</label>
+        <div className="col-md-4">
+          <label className="control-label">Title</label>
           <input
+            className="form-control fom-white"
+            placeholder="Title"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+          />
+        </div>
+        <div className="col-md-4">
+          <label className="control-label">Description</label>
+          <input
+            className="form-control fom-white"
             placeholder="Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
         </div>
 
-        <div>
+        <div className="col-md-4">
           <label className="label">Start Date and Time</label>
           <DateTime value={start} onChange={(date) => setStart(date)} />
         </div>
 
-        <div>
+        <div className="col-md-4">
           <label className="label">End Date and Time</label>
           <DateTime value={end} onChange={(date) => setEnd(date)} />
         </div>

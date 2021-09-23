@@ -111,8 +111,11 @@ export default function Calendar() {
 
   return (
     <section>
-      <div className="container-btn">
-        <button className="btn" onClick={() => setModalOpen(true)}>
+      <div className="container-btn p-2">
+        <button
+          className="btn btn-primary save"
+          onClick={() => setModalOpen(true)}
+        >
           Add new session
         </button>
       </div>

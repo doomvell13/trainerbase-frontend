@@ -32,7 +32,7 @@ const Login = () => {
         type: 'LOGIN',
         payload: data,
       })
-      console.log(data)
+      toast('Login successful!')
       window.localStorage.setItem('user', JSON.stringify(data))
 
       history.replace('/')
@@ -76,7 +76,7 @@ const Login = () => {
         </form>
 
         <p className="text-center p-3">
-          Not yet registered? <Link href="/register">Register</Link>
+          Not yet registered? <Link to="/register">Register</Link>
         </p>
       </div>
     </>

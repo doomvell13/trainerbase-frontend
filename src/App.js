@@ -6,6 +6,11 @@ import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'
 import CalendarPage from './pages/CalendarPage'
 
+import '@fullcalendar/daygrid/main.css'
+import '@fullcalendar/timegrid/main.css'
+
+import './App.css'
+
 function App() {
   return (
     <Layout>

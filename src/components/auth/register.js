@@ -29,12 +29,14 @@ const Register = () => {
         }
       )
 
-      toast('Registration successful. Please login.')
       setLoading(false)
       history.replace('/login')
+      toast('Registration successful. Please login.')
     } catch (err) {
       console.log(err.message)
-      toast(err.response.data)
+      toast(
+        'Something went wrong, please check your credentials and try again.'
+      )
       setLoading(false)
     }
   }

@@ -1,6 +1,5 @@
 import { useState, useContext } from 'react'
 import { Context } from '../../context/auth'
-import axios from 'axios'
 import { Link, useHistory } from 'react-router-dom'
 import classes from './TopNav.module.css'
 import { toast } from 'react-toastify'
@@ -8,18 +7,17 @@ import { toast } from 'react-toastify'
 const MainNavigation = () => {
   const history = useHistory()
   const [current, setCurrent] = useState('')
-
   const { state, dispatch } = useContext(Context)
   const { user } = state
 
   const logout = async () => {
     dispatch({ type: 'LOGOUT' })
     window.localStorage.removeItem('user')
-    const { data } = await axios.get(
-      `${process.env.REACT_APP_PUBLIC_API}/authentication/logout`
-    )
-    toast(data.message)
-    history.replace('/login')
+    // const { data } = await axios.get(
+    //   `${process.env.REACT_APP_PUBLIC_API}/authentication/logout`
+    // )
+    toast('Logout Successful!')
+    history.replace('/')
   }
 
   return (
