@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Calendar from '../components/calendar/Calendar'
+import Calendar from '../components/calendar/calendar'
 
 const CalendarPage = () => {
   return (

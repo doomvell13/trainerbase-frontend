@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
 
-import Layout from './components/layout/Layout'
+import Layout from './components/layout/layout'
 import RegisterPage from './pages/RegisterPage'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'

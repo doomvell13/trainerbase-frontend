@@ -3,7 +3,7 @@ import FullCalendar from '@fullcalendar/react'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import momentPlugin from '@fullcalendar/moment'
 
-import AddEventModal from './AddEventModal'
+import AddEventModal from './addeventmodal'
 import interactionPlugin from '@fullcalendar/interaction'
 import api from '../api/api'
 import moment from 'moment'

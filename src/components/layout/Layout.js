@@ -1,6 +1,6 @@
 import { Fragment } from 'react'
 
-import TopNav from './TopNav'
+import TopNav from './topnav'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 const Layout = (props) => {
