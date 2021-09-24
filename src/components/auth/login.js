@@ -8,8 +8,8 @@ import { useHistory } from 'react-router-dom'
 
 const Login = () => {
   const history = useHistory()
-  const [email, setEmail] = useState('trainer@gmail.com')
-  const [password, setPassword] = useState('abcd1234')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [loading, setLoading] = useState(false)
 
   // state

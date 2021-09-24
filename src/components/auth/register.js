@@ -6,10 +6,10 @@ import { useHistory } from 'react-router-dom'
 
 const Register = () => {
   const history = useHistory()
-  const [firstName, setFirstName] = useState('Anthony')
-  const [lastName, setLastName] = useState('Trainer3')
-  const [email, setEmail] = useState('anthonytrain@gmail.com')
-  const [password, setPassword] = useState('abcd1234')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
   const [role] = useState('TRAINER')
   const [loading, setLoading] = useState(false)
 
@@ -43,7 +43,7 @@ const Register = () => {
 
   return (
     <>
-      <h1 className="jumbotron text-center bg-primary square">Register</h1>
+      <h1 className="text-center square">Register</h1>
 
       <div className="container col-md-4 offset-md-4 pb-5">
         <form onSubmit={handleSubmit}>

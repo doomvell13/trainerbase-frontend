@@ -1,7 +1,7 @@
 import { useState, useContext } from 'react'
 import { Context } from '../../context/auth'
 import { Link, useHistory } from 'react-router-dom'
-import classes from './TopNav.module.css'
+import classes from './topnav.module.css'
 import { toast } from 'react-toastify'
 
 const MainNavigation = () => {
